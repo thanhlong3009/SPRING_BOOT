@@ -32,40 +32,19 @@ function sum_of_prime_numbers(arr) {
 }
 
 function new_array(arr) {
-  let new_arr = []
-  for (let i = 0; i < arr.length; i++) {
-    new_arr[i] = arr[i] % 2
-  }
-  return new_arr
+  return arr.filter((x) => x % 2 === 0)
 }
 
 function check_element_exist(arr, ele) {
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === ele) {
-      return true
-    }
-  }
-  return false
+  return arr.some((x) => x === ele)
 }
 
 function array_of_numbers_divisible_by_15(arr) {
-  let new_arr = []
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] % 15 === 0 && arr[i] < 100) {
-      new_arr.push(arr[i])
-    }
-  }
-  return new_arr
+  return arr.filter(x => x % 15 === 0 && x < 100 )
 }
 
 function array_of_primes(arr) {
-  let new_arr = []
-  for (let i = 0; i < arr.length; i++) {
-    if (check_prime_number(arr[i])) {
-      new_arr.push(arr[i])
-    }
-  }
-  return new_arr
+  return arr.filter((x) => check_prime_number(x))
 }
 
 function insert_element(arr,n,x,pos) { 
@@ -102,8 +81,7 @@ function delete_element(arr,n,key) {
   }
   return n - 1
 }
-
-//lab8 
+ 
 function  map_array (arr) {
   return arr.map(x => x % 2)
 }
