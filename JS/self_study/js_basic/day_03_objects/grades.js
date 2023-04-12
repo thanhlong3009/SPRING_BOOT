@@ -10,7 +10,7 @@ const grade3 = new Grades('Bob', 16, 'M')
 const grade4 = new Grades('Johnny', 2, 'M')
 const grade5 = new Grades('Ethan', 4, 'M')
 const grade6 = new Grades('Paula', 18, 'F')
-const grade7 = new Grades('Donald', 5, 'M')
+const grade7 = new Grades('Donald', 20, 'M')
 const grade8 = new Grades('Jennifer', 13, 'F')
 const grade9 = new Grades('Courtney', 15, 'F')
 const grade10 = new Grades('Jane', 9, 'F')
@@ -83,9 +83,24 @@ function get_female_students(grade_arr) {
 }
 
 // 11 
-function sort_by_name(grade_arr) {
-  
+function sort_by_name_asc(grade_arr) {
+  return grade_arr.sort((a,b) => a.name.localeCompare(b.name))
 }
-console.log(get_female_students(grades))
+
+// 12
+function sort_by_name_des(grade_arr) {
+  return grade_arr.sort((a, b) => b.name.localeCompare(a.name))
+}
+
+//13 
+function get_female_student_by_name(grade_arr,strName) {
+  return grade_arr.filter(student => student.sex === "F" && student.name.startsWith(strName))
+}
+
+//14
+function get_top5_students(grade_arr) {
+  return grade_arr.sort((a,b) => b.grade - a.grade).slice(0,5)
+}
+console.log(get_top5_students(grades))
 
 
