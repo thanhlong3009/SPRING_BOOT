@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <p id="text">this is homeworks day 4</p>
+
+  <ul id="change-color">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+  </ul>
+
+  <ul id="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+    <li>Item 5</li>
+    <li>Item 6</li>
+    <li>Item 7</li>
+  </ul>
+  <script>
+    // ex1
+    let element1 = document.getElementById("text")
+    element1.style.color = "#777"
+    element1.style.fontSize = "2rem"
+    element1.innerHTML = "Tôi có thể làm <em> bất cứ điều gì </em> tôi muốn với javascript"
+    // ex2
+    let element2 = document.querySelectorAll("#change-color li")
+    element2.forEach(x => x.style.color = "red")
+
+    // ex3
+    
+    let element3 = document.getElementById("list") 
+    for(let i = 8; i <= 10; i++) 
+    element3.insertAdjacentHTML("beforeend",`<li>Item ${i}</li>`)
+  
+    element3.querySelector("li:first-child").style.color = "red"
+  
+    element3.querySelector("li:nth-child(3)").style.backgroundColor = "blue"
+    let item_remove = element3.querySelector("li:nth-child(4)")
+    element3.removeChild(item_remove)
+  
+  </script>
+</body>
+</html>
