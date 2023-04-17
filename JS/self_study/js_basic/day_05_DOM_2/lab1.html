@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <title>Document</title>
+</head>
+
+<body>
+  <p id="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, quam!</p>
+
+  <button id="btn-1" onclick="change_content()">Change content</button>
+  <button id="btn-2">Change color</button>
+  <button id="btn-3">Change background</button>
+
+  <script>
+    // 1
+    let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+    let chars_length = chars.length
+    function get_random_text(text_lenght) {
+      let rs = ''
+      let count = 0
+      while (count < text_lenght) {
+        rs += chars.charAt(Math.floor(Math.random() * chars_length))
+        count++
+      }
+      return rs
+    }
+
+    let content = document.getElementById("text")
+    function change_content() {
+      content.innerText = get_random_text(16)
+    }
+
+    // 2
+    const hex_characters = '0123456789ABCDEF'
+    function generate_hex_code() {
+
+      let hexCode = '#'
+      for (let i = 0; i < 6; i++)
+        hexCode += hex_characters[Math.floor(Math.random() * 16)]
+      return hexCode
+    }
+    let ele_text = document.getElementById("text")
+    let ele2 = document.getElementById("btn-2")
+    ele2.onclick = function () {
+
+      ele_text.style.color = generate_hex_code()
+    }
+
+    // 3
+    function generate_rgb_color() {
+      let r = Math.floor(Math.random() * 256);
+      let g = Math.floor(Math.random() * 256);
+      let b = Math.floor(Math.random() * 256);
+      return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+
+    let ele3 = document.getElementById("btn-3")
+    ele3.addEventListener("click", function () {
+      ele_text.style.backgroundColor = generate_hex_code()
+    })
+
+  </script>
+
+</body>
+
+</html>

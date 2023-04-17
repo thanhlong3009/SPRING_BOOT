@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="box-pw" class="w-80 mt-48 ml-48 px-8 py-10 border-2 rounded-lg p-1">
+    <input id="password" type="password" class="border-2 rounded-lg p-1" placeholder="Enter password">
+    <button id="show_hide" class="button border-2 rounded-lg p-1">Show</button>
+  </div>
+  <script>
+    let password = document.getElementById("password")
+    let show_hide = document.getElementById("show_hide")
+    
+    show_hide.addEventListener("click",function() {
+      if(password.type === "password") {
+        password.type = "text"
+        show_hide.innerText = "Hide"
+      }else{
+        password.type = "password"
+        show_hide.innerText = "Show"
+      }
+    })
+  </script>
+</body>
+</html>

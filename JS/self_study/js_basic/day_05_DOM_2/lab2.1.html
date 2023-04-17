@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!-- <script>
+    document.addEventListener("click", function (event) {
+      let circle = document.createElement("div")
+      circle.classList.add("w-10", "h-10", "rounded-full", "bg-emerald-200", "absolute")
+      circle.style.left = event.clientX + "px"
+      circle.style.top = event.clientY + "px"
+
+      document.body.appendChild(circle)
+    })
+  </script> -->
+  <script>
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "b" || event.key === "B") {
+          let rectangle = document.createElement("div")
+          let width = Math.floor(Math.random() * 100 + 10)
+          let height = Math.floor(Math.random() * 100 + 10)
+          rectangle.style.width = width + "px"
+          rectangle.style.height = height + "px"
+          rectangle.classList.add("bg-emerald-200", "absolute")
+          
+          rectangle.style.left = Math.floor(Math.random() * innerWidth - width)  + "px"
+          rectangle.style.top = Math.floor(Math.random() * innerHeight - height)  + "px"
+          document.body.appendChild(rectangle)
+          
+        }
+      })
+  </script>
+  
+</body>
+
+</html>
