@@ -116,7 +116,7 @@
         type: "GET",
         success: function (data) {
           let image_url = data["message"]
-          let html = `<div id="img_${count_image + 1}" class=" image_card flex w-1/4 flex-wrap" onclick="click_image(${count_image + 1})">
+          let html = `<div id="img_${count_image + 1}" class=" image_card flex  w-1/4 flex-wrap" onclick="click_image(${count_image + 1})">
           <div class="w-full p-1 md:p-2">
             <img id="img_${count_image + 1}_tag" class=" img_tag block h-full w-full rounded-lg object-cover object-center"
               src="${image_url}" />
