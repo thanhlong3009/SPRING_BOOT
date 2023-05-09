@@ -1,0 +1,65 @@
+body {
+  font-family: 'Montserrat Thin';
+}
+
+.logo-img {
+  width: 30px;
+}
+
+.nav-item.active .nav-link {
+  color: #10c9c3 !important;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.font-small-bold {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.filter .py-2 a {
+  color: #acacac;
+  text-decoration: none;
+  font-weight: 100;
+}
+.card-body a {
+  text-decoration: none;
+  color: #acacac;
+}
+
+.card-body a:hover {
+  color: #10c9c3
+}
+.card-body {
+  color: #acacac;
+}
+
+.filter .py-2 a:hover {
+  color: #5f5f5f;
+}
+.filter .py-2.active a {
+  color: #5f5f5f !important;
+}
+
+.footer .company-name {
+  font-weight: 500;
+  font-size: 18px;
+  color: #eeebeb;
+}
+
+.footer .footer-detail {
+  font-size: 14px;
+}
+
+.pagination {
+  background-color: #f7f7f7;
+}
+.pagination a {
+  text-decoration: none;
+  color: #acacac;
+}
+.pagination a:hover {
+  color: #5f5f5f;
+}
