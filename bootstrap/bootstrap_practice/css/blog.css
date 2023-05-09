@@ -63,3 +63,12 @@ body {
 .pagination a:hover {
   color: #5f5f5f;
 }
+
+.card-img-top {
+  transition: all .3s ease;
+}
+
+
+.col-4:hover .card-img-top{
+  transform: scale(1.2);
+}
