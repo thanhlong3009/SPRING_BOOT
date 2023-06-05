@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .active {
+            color: red;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+<h2>Todo Application</h2>
+
+<input type="text" placeholder="Enter title" id="todo-input">
+<button id="btn-add">Add</button>
+
+<ul>
+    <li th:each="todo : ${todos}" th:id="|id-${todo.id}|">
+        <input type="checkbox" th:checked="${todo.status} ? true : false" th:data-todo-status="${todo.status}"
+               onchange="changeStatus(this)" th:data-todo-id="${todo.id}">
+        <span th:text="${todo.title}" th:class="${todo.status} ? 'active' : ''" th:id="|title-${todo.id}|"></span>
+        <button id="btn-edit" th:onclick="|editTodo(${todo.id})|">Edit</button>
+        <button th:onclick="|deleteTodo(${todo.id})|">Delete</button>
+    </li>
+</ul>
+
+
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    // Xóa todo
+    function deleteTodo(id) {
+        const isConfirm = window.confirm("Ban co muon xoa khong?")
+        if (isConfirm) {
+            $.ajax({
+                url: "/api/todos/" + id,
+                type: 'DELETE',
+                contentType: "application/json; charset=utf-8",
+                success(res) {
+                    $(`#id-${id}`).remove()
+                    alert("Xoa thanh cong");
+                },
+                error(err) {
+                    console.log(err);
+                }
+            })
+        }
+    }
+
+    function changeStatus(checkbox) {
+        let todoID = parseInt(checkbox.getAttribute("data-todo-id"));
+        let status = checkbox.getAttribute("data-todo-status");
+        let titleElement = document.getElementById("title-" + todoID);
+        let title = titleElement.innerText;
+
+        console.log(status)
+
+        const isConfirm = window.confirm("Ban co muon thay doi status khong?")
+        if (isConfirm) {
+
+
+            $.ajax({
+                url: "/api/todos/" + todoID,
+                type: 'PUT',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(
+                    {
+                        title: title,
+                        status: status === "true" ? false : true
+                    }),
+                success: function (res) {
+
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+
+    }
+
+    // THêm todo
+    $('#btn-add').click(function () {
+        // Lấy nd trong ô input
+        const title = $("#todo-input").val();
+
+        // Kiểm tra title
+        if (title.trim().length === 0) {
+            alert("Tiêu đề không được để trống")
+            return;
+        }
+
+        // Gọi API
+        const request = {
+            title: title
+        }
+        $.ajax({
+            url: "/api/todos",
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(request),
+            success: function (res) {
+                $("ul").append(`
+                    <li id="id-${res.id}">
+                        <input type="checkbox">
+                        <span>${res.title}</span>
+                        <button onclick="editTodo(${res.id})">Edit</button>
+                        <button onclick="deleteTodo(${res.id})">Delete</button>
+                    </li>
+                `)
+
+                $("#todo-input").val("")
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    })
+
+    // chỉnh sửa todo
+    function editTodo(id) {
+
+        $.ajax({
+            url: "/api/todos/" + id,
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            // success: function (res) {
+            //     todo = res;
+            //     request.status = todo.status
+            //     console.log(request)
+            //     console.log(todo)
+            // },
+            error: function (err) {
+                console.log(err)
+            }
+        }).done(function (response) {
+            const newTitle = window.prompt("Nhap title moi cho todo");
+            if (newTitle.trim().length === 0) {
+                alert("Tiêu đề mới không được để trống")
+                return;
+            }
+
+            let request = {
+                title: newTitle,
+                status: response.status
+            }
+            console.log(request)
+
+            $.ajax({
+                url: "/api/todos/" + id,
+                type: 'PUT',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(request),
+                success: function (res) {
+                    const titleElement = document.getElementById(`title-${id}`)
+                    titleElement.innerText = newTitle;
+                },
+                error: function (err) {
+                    console.log(err)
+
+                }
+            })
+        });
+
+
+    }
+</script>
+</body>
+</html>
