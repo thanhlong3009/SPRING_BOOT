@@ -1,5 +1,5 @@
 (document).ready(function () {
-    toastr.options.timeOut = 2500; // 2.5s
+    // toastr.options.timeOut = 2500; // 2.5s
 
     // get task status
     $.ajax({

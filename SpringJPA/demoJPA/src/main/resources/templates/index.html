@@ -60,8 +60,6 @@
 
         const isConfirm = window.confirm("Ban co muon thay doi status khong?")
         if (isConfirm) {
-
-
             $.ajax({
                 url: "/api/todos/" + todoID,
                 type: 'PUT',
