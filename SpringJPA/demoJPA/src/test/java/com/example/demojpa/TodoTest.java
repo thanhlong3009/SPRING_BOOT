@@ -1,6 +1,8 @@
 package com.example.demojpa;
 
+import com.example.demojpa.entity.Employee;
 import com.example.demojpa.entity.Todo;
+import com.example.demojpa.repository.EmployeeRepository;
 import com.example.demojpa.repository.TodoRepository;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,8 @@ public class TodoTest {
 
     @Autowired
     private TodoRepository todoRepository;
+
+
 
     @Autowired
     private Faker faker;
@@ -29,5 +33,12 @@ public class TodoTest {
             todoRepository.save(todo);
         }
 
+    }
+
+
+
+    @Test
+    void updateTodo(){
+        todoRepository.updateTodo(39,"long",true);
     }
 }
