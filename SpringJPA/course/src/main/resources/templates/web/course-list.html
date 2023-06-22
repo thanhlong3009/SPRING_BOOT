@@ -3,7 +3,7 @@
       th:replace="/layout/layout :: main-fragment(~{:: title}, ~{}, ~{:: .course-container}, ~{})">
 
 <head>
-    <title>Danh sách khóa học trực tuyến </title>
+    <title>Danh sách khóa học</title>
 </head>
 
 <body>
@@ -48,13 +48,13 @@
                 <nav aria-label="Page navigation" class="d-flex justify-content-center">
                     <ul class="pagination">
                         <li class="page-item" th:classappend="${currentPage == 1 ? 'disabled' : ''}">
-                            <a class="page-link" th:href="@{/khoa-hoc/online(page=${currentPage - 1})}">Previous</a>
+                            <a class="page-link" th:href="@{/(page=${currentPage - 1})}">Previous</a>
                         </li>
                         <li class="page-item" th:each="page : ${#numbers.sequence(1, pageInfo.getTotalPages())}" th:class="${currentPage == page ? 'active' : ''}">
-                            <a class="page-link" th:href="@{/khoa-hoc/online(page=${page})}"><span th:text="${page}"></span></a>
+                            <a class="page-link" th:href="@{/(page=${page})}"><span th:text="${page}"></span></a>
                         </li>
                         <li class="page-item" th:classappend="${currentPage == pageInfo.getTotalPages() ? 'disabled' : ''}">
-                            <a class="page-link" th:href="@{/khoa-hoc/online(page=${currentPage + 1})}">Next</a>
+                            <a class="page-link" th:href="@{/(page=${currentPage + 1})}">Next</a>
                         </li>
                     </ul>
                 </nav>
@@ -62,8 +62,6 @@
         </div>
     </div>
 </div>
-
-
 </body>
 
 </html>
